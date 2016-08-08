@@ -32,7 +32,7 @@ Przy tworzeniu naszego rozwiązania wzieliśmy wszystkie te czynniki pod uwagę 
 
 Preferowany sposób instalacji biblioteki poprzez narzędzie [composer](https://getcomposer.org/).
 
-Albo uruchom:
+Uruchom:
 
 ```
 php composer.phar require --prefer-dist pelock/aztec-decoder "*"
