@@ -46,6 +46,7 @@ Lub dodaj:
 
 do sekcji require w twoim pliku `composer.json`.
 
+Paczka dostępna na https://packagist.org/packages/pelock/aztec-decoder
 
 ####Użycie dekodera AZTEC 2D w PHP
 
