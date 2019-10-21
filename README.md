@@ -101,7 +101,8 @@ $DecodedTextFile = $myAZTecDecoder->DecodeTextFromFile('/sciezka/odczytany-ciag-
 if ($DecodedTextFile !== false)
 {
         var_dump($DecodedTextFile);
-}```
+}
+```
 
 Bartosz Wójcik
 https://www.pelock.com | http://www.dekoderaztec.pl
