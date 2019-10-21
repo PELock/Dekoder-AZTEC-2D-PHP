@@ -52,63 +52,56 @@ Paczka dostępna na https://packagist.org/packages/pelock/aztec-decoder
 
 ```php
 //
-// załącz klasę dekodera
+// załącz klasę dekodera (instalacja komendą 'php composer.phar require --prefer-dist pelock/aztec-decoder "*"')
 //
-using PELock\AZTecDecoder;
+use PELock\AZTecDecoder;
 
-private void AZTecDecoderTest()
+//
+// utwórz klasę dekodera (używamy naszego klucza licencyjnego do inicjalizacji)
+//
+$myAZTecDecoder = new PELock\AZTecDecoder("ABCD-ABCD-ABCD-ABCD");
+
+//
+// 1. Dekoduj dane bezpośrednio z pliku graficznego, zwróć wynik jako tablicę
+//
+$DecodedArray = $myAZTecDecoder->DecodeImageFromFile("zdjecie-dowodu.jpg");
+
+// czy udało się zdekodować dane?
+if ($DecodedArray !== false && $DecodedArray["Status"] === true)
 {
-    //
-    // utwórz klasę dekodera (używamy naszego klucza licencyjnego do inicjalizacji)
-    //
-    var myAZTecDecoder = new AZTecDecoder("ABCD-ABCD-ABCD-ABCD");
-
-    //
-    // 1. Dekoduj dane bezpośrednio z pliku graficznego, zwróć wynik jako rozkodowaną tablicę elementów JSON
-    //
-    var decodedArray = myAZTecDecoder.DecodeImageFromFile(@"C:\sciezka\zdjecie-dowodu.jpg");
-
-    // czy udało się zdekodować dane?
-    if (decodedArray != null && decodedArray["Status"] == true)
-    {
-        // wyświetl rozkodowane dane (są zapisane jako tablica elementów JsonValue)
-        textOutput.Text = decodedArray.ToString();
-    }
-
-    //
-    // 2. Dekoduj dane bezpośrednio z pliku graficznego
-    //
-    var decodedFromImage = myAZTecDecoder.DecodeImageFromFile(@"C:\sciezka\zdjecie-kodu-aztec-2d.png");
-
-    if (decodedFromImage != null)
-    {
-        MessageBox.Show(decodedFromImage.ToString());
-    }
-
-    //
-    // 3. Dekoduj dane z odczytanego już ciągu znaków (np. wykorzystując skaner ręczny)
-    //
-    // zakodowane dane z dowodu rejestracyjnego
-    var szValue = "ggMAANtYAAJD...";
-
-    var decodedText = myAZTecDecoder.DecodeText(szValue);
-
-    if (decodedText != null)
-    {
-        MessageBox.Show(decodedFromImage.ToString());
-    }
-
-    //
-    // 4. Dekoduj dane z odczytanego już ciągu znaków zapisanego w pliku (np. wykorzystując skaner ręczny)
-    //
-    var DecodedTextFile = myAZTecDecoder.DecodeTextFromFile(@"C:\sciezka\odczytany-ciag-znakow-aztec-2d.txt");
-
-    if (DecodedTextFile != null)
-    {
-        MessageBox.Show(DecodedTextFile.ToString());
-    }
+        // wyświetl rozkodowane dane (są zapisane jako tablica asocjacyjna)
+        var_dump($DecodedArray);
 }
-```
+
+//
+// 2. Dekoduj dane bezpośrednio z pliku graficznego i zwróć wynik jako string JSON
+//
+$DecodedJSON = $myAZTecDecoder->DecodeImageFromFile("zdjecie-kodu-aztec-2d.png", false);
+
+if ($DecodedJSON !== false)
+{
+        echo $DecodedJSON;
+}
+
+//
+// 3. Dekoduj dane z odczytanego już ciągu znaków (np. wykorzystując skaner ręczny)
+//
+$DecodedText = $myAZTecDecoder->DecodeText("ggMAANtYAAJD...");
+
+if ($DecodedText !== false)
+{
+        var_dump($DecodedText);
+}
+
+//
+// 4. Dekoduj dane z odczytanego już ciągu znaków zapisanego w pliku (np. wykorzystując skaner ręczny)
+//
+$DecodedTextFile = $myAZTecDecoder->DecodeTextFromFile('/sciezka/odczytany-ciag-znakow-aztec-2d.txt');
+
+if ($DecodedTextFile !== false)
+{
+        var_dump($DecodedTextFile);
+}```
 
 Bartosz Wójcik
 https://www.pelock.com | http://www.dekoderaztec.pl
