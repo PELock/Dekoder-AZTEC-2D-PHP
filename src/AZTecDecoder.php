@@ -8,7 +8,7 @@
  * Jezyk          : PHP
  * Zaleznosci     : Biblioteka cURL (http://php.net/manual/en/book.curl.php)
  * Autor          : Bartosz Wójcik (support@pelock.com)
- * Strona domowa  : http://www.dekoderaztec.pl | https://www.pelock.com
+ * Strona domowa  : https://www.dekoderaztec.pl | https://www.pelock.com
  *
  *****************************************************************************/
 
